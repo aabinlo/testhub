@@ -11,7 +11,7 @@ var App = React.createClass({
                     <Navi />
                 </div>
                 <div>
-                    <DeviceList />
+                    <DeviceList url="devices/list" pollInterval="1000"/>
                 </div>
             </div>);
     }
