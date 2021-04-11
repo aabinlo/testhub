@@ -1,8 +1,96 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+/* CSS declarations go here */
+body{
+    font-family: Helvetica, 'Hiragino Sans GB', 'Microsoft Yahei', '微软雅黑', Arial, sans-serif;
+
+
+    color:#494949;
+    font-size:16px;
 }
 
-a {
-  color: #00B7FF;
+body,ul,li,form {
+    margin:0;
+    padding:0
 }
+
+
+.page {
+    height: auto;
+    margin: 0 0 -115px;
+    padding-bottom: 115px;
+    min-width: 1200px;
+}
+
+
+.header {
+    height: 48px;
+    width: 100%;
+    min-width: 1200px;
+    font-size: 16px;
+    background-color: #404040;
+}
+
+
+
+.charactersize {
+    font-size:16px;
+
+}
+.index_logo {
+    height: 48px;
+    width: 10%;
+    font-size: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    float: left;
+    margin: 0;
+    line-height: 48px;
+    text-align:center
+
+}
+
+.index_nav {
+    float: left;
+    position: relative;
+    list-style: none;
+    width: 70%;
+    height: 48px;
+    margin-bottom: 0;
+
+    z-index: 1020;
+}
+
+.nav_right {
+    float: right;
+    width: 20%;
+    height: 48px;
+    line-height: 48px;
+    vertical-align: middle;
+    position: relative;
+}
+
+
+
+.container {
+    margin: 0 auto;
+    padding-left: 10px;
+    padding-right: 10px;
+    display: table;
+    min-width: 1200px;
+    width: 85%
+
+}
+
+.dev_list {
+    margin: 0 auto;
+    padding-top: 100px;
+    padding-left: 10px;
+    padding-right: 10px;
+    display: table;
+    min-width: 1000px;
+    width: 60%
+
+}
+
+
+
+
