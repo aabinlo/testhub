@@ -1,35 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Button, Table, Icon } from 'antd';
-import $ from 'jquery';
+import { Table, Icon } from 'antd';
+import $ from 'jquery'
 
-
-
-
-
-const columns = [ {title:'' ,  dataIndex:'logo', key:'logo',width:'10%',},
+/*const columns = [ {title:'' ,    dataIndex:'logo', key:'logo',width:'10%',},
     {title: '品牌',dataIndex: 'brand',key: 'name',width:'5%',},
     {title: '型号',dataIndex: 'model',key: 'model',width:'10%',},
     {title: '系统',dataIndex: 'version',key: 'version',width:'10%',},
     {title: '分辨率',dataIndex:"resolution",key: 'resolution',width:'10%',},
-    {title: '设备ID',dataIndex:"device_id",key: 'device_id', width:'35%',},
-    {title: '状态', dataIndex:'device_status',key: 'device_status',width:'20%',
-     render:()=>(
+    {title: '设备ID',dataIndex:"deviceid",key: 'deviceid', width:'35%',},
+    {title: '状态', dataIndex:'state',key: 'state',width:'20%',}];*/
 
-         <span>
-        <a href="#">调试</a>
-        <span className="ant-divider"></span>
-        <a href="#">测试</a>
-
-         </span>)},
-     ]
-
-
-
+const columns = [
+    {title: '设备ID', dataIndex: 'device_id', key: 'device_id'},
+    {title: '分辨率', dataIndex: 'resolution', key: 'resolution'},
+    {title: '状态', dataIndex: 'device_status', key: 'device_status'}
+];
 
 
 var DeviceList = React.createClass({
-    loadDeviceListFromServer:function() {
+    loadDeviceListFromServer: function() {
         console.log('loadDeviceListFromServer');
         $.ajax({
             url: '/device/list',
@@ -37,10 +27,7 @@ var DeviceList = React.createClass({
             method: 'GET',
             cache: false,
             success: function(data) {
-
-                this.setState({
-                    data:data
-                });
+                this.setState({data: data});
                 console.log(data);
             }.bind(this),
             error: function(xhr, status, err) {
@@ -51,38 +38,33 @@ var DeviceList = React.createClass({
 
     getInitialState:function() {
         console.log('getInitialState');
-        var addr = "//static.testhub.lo/img/mobile/xiaomi/logo.png";
         return {
-
-            data:
-                [{logo:<img className="brand_logo" src={addr}></img>,
-                    brand:'小米',
-                    model:'小米note',
-                    version:'5.0',
-                    resolution:'1080x1920',
-                    device_id:'1235586666KAMANAKAKAKAKNA',
-                   // device_status:<Button type="primary" size="large" >{status}</Button>
-                }],
+            /*data: [{logo:'',
+                brand:'小米',
+                model:'小米note',
+                version:'5.0',
+                resolution:'1080x1920',
+                deviceid:'1235586666KAMANAKAKAKAKNA',
+                state:''
+            }],*/
+            data: []
         };
+    },
+
+    render:function() {
+        return (
+            <Table columns={columns}
+                   dataSource={this.state.data}
+                   pagination={false}
+            />
+
+        );
     },
 
     componentDidMount: function() {
         console.log('componentDidMount');
         this.loadDeviceListFromServer();
         //setInterval(this.loadDeviceListFromServer, this.props.pollInterval);
-    },
-
-
-    render:function() {
-        return (
-            <div className="dev_list">
-                <Table columns={columns}
-                   dataSource={this.state.data}
-                   pagination={false}
-                />
-            </div>
-
-        );
     },
 });
 

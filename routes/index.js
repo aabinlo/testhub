@@ -4,7 +4,7 @@ var db = require('../db/db');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    res.render('register', { title: 'Express' });
+    res.render('index', { title: 'Express' });
 });
 
 router.get('/device/list', function(req, res, next) {

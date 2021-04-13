@@ -5,10 +5,10 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-    entry: './components/app-register.jsx',
+    entry: './components/app.jsx',
     output: {
         path: path.join(__dirname, 'public/bundle'),
-        filename: 'register-bundle.js'
+        filename: 'app-bundle.js'
     },
     resolve: {
         extensions: ['', '.js', '.jsx']
