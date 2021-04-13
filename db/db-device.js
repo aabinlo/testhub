@@ -50,7 +50,7 @@ function updateDeviceInfo(deviceInfo, callback){
 }
 
 function selectDeviceInfo(deviceInfo, callback) {
-    var selectSql = 'select * from device_info where device_id = ?';
+    var selectSql = 'select count(*) from device_info where device_id = ?';
     var valueArray = new Array();
     valueArray[0] = deviceInfo['device_id'];
     db.execQuery(selectSql, valueArray, callback);
