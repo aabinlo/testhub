@@ -1,5 +1,6 @@
 var express = require('express');
 var mysql = require('../db/db-device');
+var db = require('../db/db');
 var router = express.Router();
 
 var getResponse = function(code){
@@ -63,6 +64,47 @@ router.post('/init', function(req, res){
             }
         }
     });
+});
+
+router.get('/list', function(req, res) {
+    console.log('list');
+    var sql = 'SELECT device_id, resolution, device_status FROM device_info';
+    db.execQuery(sql, null, function(err, results) {
+        console.log(err, results);
+        res.json(results);
+    });
+});
+
+router.get('/screen_port', function(req, res, next) {
+    console.log(req.query);
+    var deviceId = req.query.device_id;
+    if (!deviceId) {
+        var err = new Error('NO ID');
+        err.status = 400;
+        next(err);
+    }
+    console.log(deviceId);
+    var sql = 'SELECT ctrl_port, data_port FROM device_info where device_id=?';
+    db.execQuery(sql, deviceId, function(err, results) {
+        if (!err) {
+            if (results.length > 0) {
+                res.json(results);
+            } else {
+                var err = new Error('ID NOT FOUND');
+                err.status = 404;
+                next(err);
+            }
+        } else {
+            var err = new Error('Query screen_port failed' + err.toString());
+            err.status = 500;
+            next(err);
+        }
+    });
+});
+
+router.get('/debug/:id', function(req, res, next) {
+    console.log(req.params);
+    res.render('debug-device', {deviceId: req.params.id});
 });
 
 module.exports = router;
