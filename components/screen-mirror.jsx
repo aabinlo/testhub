@@ -3,27 +3,27 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import Player from '../public/lib/Player';
 import io from 'socket.io-client';
+import { Button } from 'antd';
 
 var ScreenMirror = React.createClass({
+    propTypes: {
+        deviceId: React.PropTypes.string.isRequired
+    },
+
     getDefaultProps: function() {
         return {
             deviceId: 'unknown'
         };
     },
 
-    propTypes: {
-        deviceId: React.PropTypes.string.isRequired
-    },
-
-    getScreenPort: function() {
-        console.log('getScreenPort', this.props.deviceId);
+    initScreenMirror: function() {
+        console.log('initScreenMirror', this.props.deviceId);
         $.ajax({
             url: '/device/screen_port?device_id=' + this.props.deviceId,
             dataType: 'json',
             type: 'GET',
             cache: false,
             success: function(data) {
-                console.log('get success', data);
                 this.initPlayer(data[0].ctrl_port, data[0].data_port);
             }.bind(this),
             error: function(xhr, status, err) {
@@ -125,12 +125,17 @@ var ScreenMirror = React.createClass({
         return (
             <div className="screen_container">
                 <div id="screen" className="phone_screen"></div>
+                <div>
+                    <Button type="primary">Return</Button>
+                    <Button type="primary">Home</Button>
+                    <Button type="primary">Menu</Button>
+                </div>
             </div>
         );
     },
 
     componentDidMount: function() {
-        this.getScreenPort();
+        this.initScreenMirror();
     }
 });
 

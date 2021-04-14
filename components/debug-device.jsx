@@ -1,26 +1,48 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Row, Col } from 'antd';
-import ScreenMirror from './screen-mirror.jsx';
 
-var DebugDevice = React.createClass({
+var ConnectDevice = React.createClass({
+    propTypes: {
+        deviceId: React.PropTypes.string.isRequired
+    },
+
+    getDefaultProps: function() {
+        return {
+            deviceId: 'unknown'
+        };
+    },
+
+    getInitialState: function() {
+        return {
+            connPort: 0
+        };
+    },
+
+    getConnPort: function() {
+        $.ajax({
+            url: '/device/conn_port?device_id=' + this.props.deviceId,
+            dataType: 'json',
+            type: 'GET',
+            cache: false,
+            success: function(data) {
+                this.setState({connPort: data[0].conn_port});
+            }.bind(this),
+            error: function(xhr, status, err) {
+                console.error(this.props.url, status, err.toString());
+            }.bind(this)
+        });
+    },
+
     render: function() {
         return (
             <div>
-                <Row>
-                    <Col span={16}>
-                        <ScreenMirror host="127.0.0.1" hostPort="7550"
-                                      ctrlPort="10711" dataPort="10710"/>
-                    </Col>
-                    <Col span={8}>
-                        <h2 style={{margin: '10px'}}>HUAWEI</h2>
-                        <h4>开发者手机连接:<span class="text-info">adb connect 127.0.0.1:7550</span></h4>
-                    </Col>
-                </Row>
+                <h2 style={{margin: '10px'}}>HUAWEI</h2>
+                <h4>开发者手机连接:<span>adb connect 127.0.0.1:{this.state.connPort}</span></h4>
             </div>
 
         );
     }
 });
 
-export default DebugDevice;
+export default ConnectDevice;

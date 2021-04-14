@@ -3,15 +3,24 @@ import ReactDOM from 'react-dom';
 import { Row, Col } from 'antd';
 import Navi from './navi.jsx';
 import ScreenMirror from './screen-mirror.jsx';
+import DebugDevice from './debug-device';
 
 var App = React.createClass({
     render: function() {
         var div = document.getElementById('app');
-        console.log('div.attributes', div.attributes);
         var id = div.attributes.deviceId.value;
         console.log('App render', id);
         return (
-            <ScreenMirror deviceId={id}/>
+        <div>
+            <Row>
+                <Col span={16}>
+                    <ScreenMirror deviceId={id}/>
+                </Col>
+                <Col span={8}>
+                    <DebugDevice deviceId={id}/>
+                </Col>
+            </Row>
+        </div>
         );
     }
 });
