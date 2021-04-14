@@ -171,10 +171,10 @@ body,ul,li,form {
 }
 
 .screen_container {
-    border: 5px solid #566D73;
-    width: 810px;
-    height: 490px;
-    margin: 0px;
+    border: 3px solid #566D73;
+    width: 806px;
+    height: 486px;
+    margin-top: 10px;
 }
 
 .phone_screen {
@@ -196,8 +196,8 @@ body,ul,li,form {
 
 .debug_title{
 
-    width:810px;
-    height:80px;
+    width:806px;
+    height:60px;
     margin-bottom: 10px;
 }
 .device_info{
@@ -207,11 +207,11 @@ body,ul,li,form {
 }
 
 .btn_exit{
-    background-color: #FF4351; /* Red */
-    border-color: #FF4351;
-    border-radius: 5px;
+    background-color: #E84A56; /* Red */
+    border:none;
     color: white;
-    padding: 10px 20px;
+    margin-top: 10px;
+    padding: 6px 15px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -220,9 +220,52 @@ body,ul,li,form {
     z-index: -100;
 }
 
-.btn_phone{
-    margin-top: 20px;
+.btn_bar{
+    margin-top: 10px;
+    height:80px;
+    width:550px;
+}
 
+.btn_rotate{
+    float:left;
+    background-color: #2db7f5;
+    border: none;
+    color: white;
+    margin-top: 10px;
+    padding: 10px 40px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    z-index: -100;
+}
+
+.btn_barright{
+    float:right;
+}
+
+.btn_phone{
+    background-color: #2db7f5;
+    border: none;
+    color: white;
+    margin-top: 10px;
+    padding: 10px 40px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    z-index: -100;
+}
+
+button.btn_phone:hover{
+    background-color:#57c5f7;
+}
+button.btn_rotate:hover{
+    background-color:#57c5f7;
+}
+
+button.btn_exit:hover{
+    background-color:#f37f88;
 }
 
 

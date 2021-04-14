@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import Player from '../public/lib/Player';
 import io from 'socket.io-client';
-import { Button } from 'antd';
+import {Icon, Button } from 'antd';
 
 var ScreenMirror = React.createClass({
     propTypes: {
@@ -125,15 +125,17 @@ var ScreenMirror = React.createClass({
         return (
             <div className="screen_container">
                 <div id="screen" className="phone_screen"></div>
-                <div className="btn_phone">
-                    <Button type="primary">Return</Button>
-                    <Button type="primary">Home</Button>
-                    <Button type="primary">Menu</Button>
+                <div className="btn_bar">
+                    <button className="btn_rotate"><Icon type="reload" /></button>
+                    <div className="btn_barright">
+                        <button className="btn_phone"><Icon type="caret-left" /></button>
+                        <button className="btn_phone"><Icon type="home" /></button>
+                        <button className="btn_phone"><Icon type="menu-fold" /></button>
+                    </div>
                 </div>
             </div>
         );
     },
-
     componentDidMount: function() {
         this.initScreenMirror();
     }
