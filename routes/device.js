@@ -87,6 +87,60 @@ router.get('/list', function (req, res) {
     } catch (err) {
         res.status(500).send(err.message);
     }
-})
+});
+
+router.get('/screen_port', function(req, res, next) {
+    var deviceId = req.query.device_id;
+    if (!deviceId) {
+        var err = new Error('NO ID');
+        err.status = 400;
+        next(err);
+    }
+    var sql = 'SELECT ctrl_port, data_port FROM device_info where device_id=?';
+    db.execQuery(sql, deviceId, function(err, results) {
+        if (!err) {
+            if (results.length > 0) {
+                res.json(results);
+            } else {
+                var err = new Error('ID NOT FOUND');
+                err.status = 404;
+                next(err);
+            }
+        } else {
+            var err = new Error('Query screen_port failed' + err.toString());
+            err.status = 500;
+            next(err);
+        }
+    });
+});
+
+router.get('conn_port', function(req, res, next) {
+    var deviceId = req.query.device_id;
+    if (!deviceId) {
+        var err = new Error('NO ID');
+        err.status = 400;
+        next(err);
+    }
+    var sql = 'SELECT conn_port FROM device_info where device_id=?';
+    db.execQuery(sql, deviceId, function(err, results) {
+        if (!err) {
+            if (results.length > 0) {
+                res.json(results);
+            } else {
+                var err = new Error('ID NOT FOUND');
+                err.status = 404;
+                next(err);
+            }
+        } else {
+            var err = new Error('Query conn_port failed' + err.toString());
+            err.status = 500;
+            next(err);
+        }
+    });
+});
+
+router.get('/debug/:id', function(req, res, next) {
+    res.render('debug-device', {deviceId: req.params.id});
+});
 
 module.exports = router;
