@@ -36,14 +36,9 @@ var ConnectDevice = React.createClass({
 
     render: function() {
         return (
-            <div className="debug_title">
-                <div className="device_info">
-                <h2>HUAWEI</h2>
+            <div>
+                <h2 style={{margin: '10px'}}>HUAWEI</h2>
                 <h4>开发者手机连接:<span>adb connect 127.0.0.1:{this.state.connPort}</span></h4>
-                </div>
-                <button className="btn_exit">结束调试</button>
-
-
             </div>
 
         );
