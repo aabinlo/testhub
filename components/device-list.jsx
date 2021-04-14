@@ -3,17 +3,12 @@ import ReactDOM from 'react-dom';
 import {Button, Table, Icon } from 'antd';
 import $ from 'jquery';
 
-
-
-
-
-const columns = [{title: '品牌',dataIndex: 'brand_name',key: 'name',width:'10%',},
-    {title: '型号',dataIndex: 'model_name',key: 'model_name',width:'10%',},
-    {title: '系统版本',dataIndex: 'os',key: 'os',width:'10%',},
+const columns = [{title: '品牌',dataIndex: 'brandName',key: 'brandName',width:'10%',},
+    {title: '型号',dataIndex: 'modelName',key: 'modelName',width:'15%',},
+    {title: '系统版本',dataIndex: 'os',key: 'os',width:'15%',},
     {title: '分辨率',dataIndex:"resolution",key: 'resolution',width:'10%',},
     {title: 'RAM',dataIndex:"ram",key: 'ram', width:'15%',},
-    {title: 'ROM',dataIndex:"rom",key: 'rom', width:'15%',},
-    {title: '状态',dataIndex:"device_status",key: 'device_status', width:'10%',},
+    {title: '状态',dataIndex:"status",key: 'status', width:'15%',},
     {title: '操作', dataIndex:'operate',key: 'operate',width:'20%',
      render:()=>(
          <span>
@@ -23,7 +18,6 @@ const columns = [{title: '品牌',dataIndex: 'brand_name',key: 'name',width:'10%
 
          </span>)},
 ]
-
 var DeviceList = React.createClass({
     loadDeviceListFromServer:function() {
         console.log('loadDeviceListFromServer');
@@ -44,28 +38,24 @@ var DeviceList = React.createClass({
             }.bind(this)
         });
     },
-
     getInitialState:function() {
         console.log('getInitialState');
         return {
             data:
-                [  {brand_name:'小米',
-                    model_name:'小米note',
+                [  {brandName:'小米',
+                    modelName:'小米note',
                     os:'5.0',
                     resolution:'1080x1920',
                     ram:15642312,
-                    rom:12634457,
-                    device_status:'busy',
+                    status:'busy',
                 }],
         };
     },
-
     componentDidMount: function() {
         console.log('componentDidMount');
         this.loadDeviceListFromServer();
         //setInterval(this.loadDeviceListFromServer, this.props.pollInterval);
     },
-
     render:function() {
         return (
             <div className="dev_list">
