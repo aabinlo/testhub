@@ -82,7 +82,7 @@ body,ul,li,form {
 
 .dev_list {
     margin: 0 auto;
-    padding-top: 100px;
+    padding-top: 50px;
     padding-left: 10px;
     padding-right: 10px;
     display: table;
@@ -91,6 +91,86 @@ body,ul,li,form {
 
 }
 
+<<<<<<< HEAD
+.brand_logo{
+    width:80px;
+    vertical-align: middle;
+    border:0px;
+}
+
+
+.login_box {
+
+    width: 500px;
+    border-radius: 5px;
+    border: 2px solid #e6ebf0;
+    background: #fff;
+    margin: 0 auto;
+    margin-top: 150px;
+}
+
+
+.register_box {
+    width: 640px;
+    border-radius: 5px;
+    border: 2px solid #e6ebf0;
+    background: #fff;
+    margin: 0 auto;
+    margin-top: 150px;
+}
+
+
+.register_form{
+    width:100%;
+    padding:50px 20px 50px 20px;
+    margin:0 auto;
+}
+
+.login_form{
+    width:100%;
+    padding:50px 100px 50px 100px;
+    margin:0 auto;
+}
+
+
+
+.login_button input{
+    display: inline-block;
+    width: 300px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    color: #0088cc;
+    border:1px solid #e6ebf0;
+    background: #08c;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 5px;
+}
+
+
+.form{
+    width: 300px;
+    height: 48px;
+    line-height: 48px;
+
+}
+
+.btn_reg{
+    margin-left: 10px;
+}
+
+
+.login_title {
+    width:100%;
+    height:60px ;
+    text-align: center;
+    padding:16px;
+    font-size: 18px;
+    background: #ebebeb;
+    color: #666;
+}
+=======
 .screen_container {
     border: 1px solid #FFF000;
     width: 820px;
@@ -104,6 +184,7 @@ body,ul,li,form {
     margin: 10px auto auto;
 }
 
+>>>>>>> 4bcfaf9887cf4a2126ac4e7c7993cf5c7bd71a1e
 
 
 
