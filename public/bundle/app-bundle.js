@@ -21626,7 +21626,7 @@
 	                            { key: 'reg' },
 	                            _react2.default.createElement(
 	                                'a',
-	                                { href: './index.html', target: '_blank' },
+	                                { href: './register.html', target: '_blank' },
 	                                '注册'
 	                            )
 	                        )

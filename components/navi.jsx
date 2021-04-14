@@ -48,7 +48,7 @@ var Navi = React.createClass({
                                 <a href="../views/login.html" target="_blank">登录</a>
                             </Menu.Item>
                             <Menu.Item key="reg">
-                                <a href="./index.html" target="_blank">注册</a>
+                                <a href="./register.html" target="_blank">注册</a>
                             </Menu.Item>
                         </Menu>
                     </div>
