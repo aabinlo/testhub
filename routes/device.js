@@ -30,13 +30,12 @@ var getResponse = function (code) {
     return resInfo;
 };
 //前端显示的device信息
-function device(brandName, modelName, os, resolution, ram, rom, status) {
+function device(brandName, modelName, os, resolution, ram, status) {
     this.brandName = brandName;
     this.modelName = modelName;
     this.os = os;
     this.resolution = resolution;
     this.ram = ram;
-    this.rom = rom;
     this.status = status;
 }
 
@@ -79,8 +78,7 @@ router.get('/list', function (req, res) {
                 var deviceList = new Array();
                 for (var i = 0; i < results.length; ++i) {
                     deviceList.push(new device(results[i].brand_name, results[i].model_name,
-                        results[i].os, results[i].resolution, results[i].ram, results[i].rom,
-                        results[i].device_status));
+                        results[i].os, results[i].resolution, results[i].ram, results[i].device_status));
                 }
                 res.json(deviceList);
             }
