@@ -82,7 +82,7 @@ body,ul,li,form {
 
 .dev_list {
     margin: 0 auto;
-    padding-top: 100px;
+    padding-top: 50px;
     padding-left: 10px;
     padding-right: 10px;
     display: table;
@@ -91,17 +91,138 @@ body,ul,li,form {
 
 }
 
+.brand_logo{
+    width:80px;
+    vertical-align: middle;
+    border:0px;
+}
+
+
+.login_box {
+
+    width: 500px;
+    border-radius: 5px;
+    border: 2px solid #e6ebf0;
+    background: #fff;
+    margin: 0 auto;
+    margin-top: 150px;
+}
+
+
+.register_box {
+    width: 640px;
+    border-radius: 5px;
+    border: 2px solid #e6ebf0;
+    background: #fff;
+    margin: 0 auto;
+    margin-top: 150px;
+}
+
+
+.register_form{
+    width:100%;
+    padding:50px 20px 50px 20px;
+    margin:0 auto;
+}
+
+.login_form{
+    width:100%;
+    padding:50px 100px 50px 100px;
+    margin:0 auto;
+}
+
+
+
+.login_button input{
+    display: inline-block;
+    width: 300px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    color: #0088cc;
+    border:1px solid #e6ebf0;
+    background: #08c;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 5px;
+}
+
+
+.form{
+    width: 300px;
+    height: 48px;
+    line-height: 48px;
+
+}
+
+.btn_reg{
+    margin-left: 10px;
+}
+
+
+.login_title {
+    width:100%;
+    height:60px ;
+    text-align: center;
+    padding:16px;
+    font-size: 18px;
+    background: #ebebeb;
+    color: #666;
+}
+
 .screen_container {
-    border: 1px solid #FFF000;
-    width: 820px;
-    height: 500px;
-    margin: 10px;
+    border: 5px solid #566D73;
+    width: 810px;
+    height: 490px;
+    margin: 0px;
 }
 
 .phone_screen {
     width: 800px;
     height: 480px;
-    margin: 10px auto auto;
+    margin: 0 auto;
+}
+
+.debug_container{
+
+    margin: 0 auto;
+    margin-top:100px;
+    padding-left: 50px;
+    padding-right: 50px;
+    display: block;
+    min-width: 1000px;
+    width: 80%
+}
+
+.debug_title{
+
+    width:810px;
+    height:80px;
+    margin-bottom: 10px;
+}
+.device_info{
+    width:60%;
+    height: 100%;
+    float:left;
+}
+
+.btn_exit{
+    background-color: #FF4351; /* Red */
+    border-color: #FF4351;
+    border-radius: 5px;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    float:right;
+    z-index: -100;
+}
+
+.btn_phone{
+    margin-top: 20px;
+
 }
 
 

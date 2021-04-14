@@ -11,15 +11,9 @@ var App = React.createClass({
         var id = div.attributes.deviceId.value;
         console.log('App render', id);
         return (
-        <div>
-            <Row>
-                <Col span={16}>
-                    <ScreenMirror deviceId={id}/>
-                </Col>
-                <Col span={8}>
-                    <DebugDevice deviceId={id}/>
-                </Col>
-            </Row>
+        <div className="debug_container">
+            <DebugDevice deviceId={id}/>
+            <ScreenMirror deviceId={id}/>
         </div>
         );
     }
