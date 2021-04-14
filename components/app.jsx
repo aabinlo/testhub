@@ -7,13 +7,10 @@ var App = React.createClass({
     render: function() {
         return (
             <div>
-                <div>
-                    <Navi />
-                </div>
-                <div>
-                    <DeviceList url="devices/list" pollInterval="1000"/>
-                </div>
-            </div>);
+                <Navi />
+                <DeviceList url="devices/list" />
+            </div>
+            );
     }
 });
 

@@ -125,7 +125,7 @@ var ScreenMirror = React.createClass({
         return (
             <div className="screen_container">
                 <div id="screen" className="phone_screen"></div>
-                <div>
+                <div className="btn_phone">
                     <Button type="primary">Return</Button>
                     <Button type="primary">Home</Button>
                     <Button type="primary">Menu</Button>
