@@ -1,6 +1,7 @@
 var express = require('express');
 var mysql = require('../db/db-device');
 var router = express.Router();
+var db = require('../db/db');
 
 var getResponse = function (code) {
     var resInfo = {
