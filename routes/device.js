@@ -1,28 +1,26 @@
 var express = require('express');
 var mysql = require('../db/db-device');
-var db = require('../db/db');
 var router = express.Router();
 
-var getResponse = function(code){
+var getResponse = function (code) {
     var resInfo = {
-        'code':0,
-        'message':'',
-        'request_id':''
+        'code': 0,
+        'message': '',
+        'request_id': ''
     };
 
     resInfo.code = code;
     var date = new Date();
     resInfo.request_id = (date.getTime()).toString();
-    switch(code)
-    {
+    switch (code) {
         case 0:
             resInfo.message = 'OK';
             break;
         case -1:
-            resInfo.message = 'connect db failed';
+            resInfo.message = 'query db failed';
             break;
         case -2:
-            resInfo.message = 'query db failed';
+            resInfo.message = 'unexpect error';
             break;
         default:
             resInfo.message = 'unknown error';
@@ -30,49 +28,65 @@ var getResponse = function(code){
     }
     return resInfo;
 };
+//前端显示的device信息
+function device(brandName, modelName, os, resolution, ram, rom, status) {
+    this.brandName = brandName;
+    this.modelName = modelName;
+    this.os = os;
+    this.resolution = resolution;
+    this.ram = ram;
+    this.rom = rom;
+    this.status = status;
+}
 
-var cb = function(err, results){
-    if(!err){
-        res.json(getResponse(retCode));
-    }else {
-        console.log('sql query err : ' + err.message);
+router.post('/init', function (req, res) {
+    try {
+        var deviceInfo = req.body;
+        deviceInfo['logo'] = 'test.logo';
+        deviceInfo['sockio_port'] = 0;
+
+        mysql.selectDevice(deviceInfo, function (err, results) {
+            if (err) {
+                res.json(getResponse(-1));
+            } else {
+                if (typeof results != 'undefined' && results.length > 0) {
+                    console.log('update device ' + deviceInfo.brand_name);
+                    mysql.updateDevice(deviceInfo, function (err, results) {
+                        var code = err ? -1 : 0;
+                        res.json(getResponse(code));
+                    });
+                } else {
+                    console.log('insert new device ' + deviceInfo.brand_name);
+                    mysql.insertDevice(deviceInfo, function (err, results) {
+                        var code = err ? -1 : 0;
+                        res.json(getResponse(code));
+                    });
+                }
+            }
+        });
+    } catch (err) {
+        res.json(getResponse(-2));
     }
-};
-
-router.post('/init', function(req, res){
-    var deviceInfo = req.body;
-    deviceInfo['logo'] = 'test.logo';
-    deviceInfo['sockio_port'] = 0;
-
-    mysql.selectDevice(deviceInfo, function(err, retCode, results){
-        if(!err){
-            if(results == 0){
-                console.log('insert new device ' + deviceInfo.brand_name);
-                mysql.insertDevice(deviceInfo, function(err, results){
-                    if(!err){
-                        res.json(getResponse(retCode));
-                    }else {
-                        console.log('sql query err : ' + err.message);
-                    }
-                });
-            }
-            else {
-                console.log('update device ' + deviceInfo.brand_name);
-                mysql.updateDevice(deviceInfo, function(err, results){
-                    res.json(getResponse(retCode));
-                });
-            }
-        }
-    });
 });
 
-router.get('/list', function(req, res) {
-    console.log('list');
-    var sql = 'SELECT device_id, resolution, device_status FROM device_info';
-    db.execQuery(sql, null, function(err, results) {
-        console.log(err, results);
-        res.json(results);
-    });
+router.get('/list', function (req, res) {
+    try {
+        mysql.getAllDevice(function (err, results) {
+            if (err) {
+                res.status(500).send('server internal error');
+            } else {
+                var deviceList = new Array();
+                for (var i = 0; i < results.length; ++i) {
+                    deviceList.push(new device(results[i].brand_name, results[i].model_name,
+                        results[i].os, results[i].resolution, results[i].ram, results[i].rom,
+                        results[i].device_status));
+                }
+                res.json(deviceList);
+            }
+        });
+    } catch (err) {
+        res.status(500).send(err.message);
+    }
 });
 
 router.get('/screen_port', function(req, res, next) {

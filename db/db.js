@@ -6,30 +6,29 @@ var dbCfg = require('./db-cfg');
 
 var pool = mysql.createPool(dbCfg);
 
-function sqlQuery(sql, args, handler){
-    pool.getConnection(function(err, conn){
-        if(err){
+function sqlQuery(sql, args, callback) {
+    pool.getConnection(function (err, conn) {
+        if (err) {
             console.log('connect sql server failed ' + err.message);
-            handler(err);
-        }else{
-            if(args){
-                var query = conn.query(sql, args, function(qerr, results){
-                    if(qerr){
+            callback(err);
+        } else {
+            if (args) {
+                var query = conn.query(sql, args, function (qerr, results, fields) {
+                    if (qerr) {
                         console.log('query sql error ' + sql.toString() + ' ' + qerr.message);
-                        handler(qerr);
+                        callback(qerr);
+                    }else {
+                        callback(null, results, fields);
                     }
-
-                    handler(null, results);
                 });
-            }
-            else {
-                var query = conn.query(sql, function(qerr, results){
-                    if(qerr){
+            } else {
+                var query = conn.query(sql, function (qerr, results, fields) {
+                    if (qerr) {
                         console.log('query sql error ' + sql.toString() + ' ' + qerr.message);
-                        handler(qerr);
+                        callback(qerr);
+                    }else {
+                        callback(null, results, fields);
                     }
-
-                    handler(null, results);
                 });
             }
             conn.release();
