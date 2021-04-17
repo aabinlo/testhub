@@ -27,7 +27,6 @@ var DeviceList = React.createClass({
             type: 'GET',
             cache: false,
             success: function(data) {
-
                 this.setState({
                     data:data
                 });
