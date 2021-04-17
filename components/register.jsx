@@ -40,17 +40,21 @@ let RegisterForm = React.createClass({
                 console.log('Errors in form!!!');
                 return;
             }
-            console.log('Submit!!!');
             var fieldData = this.props.form.getFieldsValue();
-            var userData ={'username':fieldData.email,'passwd':fieldData.passwd};
-            console.log(userData);
+            var userData ={'email': fieldData.email, 'passwd': fieldData.passwd};
             $.ajax({
-                url: '',
+                url: '/users/register',
                 dataType: 'json',
                 method: 'POST',
                 cache: false,
-                success:function(){
-                    console.log(data);},
+                data: userData,
+                success: function(data) {
+                    if (data.success) {
+                        window.top.location.href = '/';
+                    } else {
+                        console.error('register error');
+                    }
+                }.bind(this),
                 error: function(xhr, status, err) {
                     console.error(this.props.url, status, err.toString());
                 }.bind(this)

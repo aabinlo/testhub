@@ -8,7 +8,7 @@ module.exports = {
     entry: {
         login: './components/app-login.jsx',
         register: './components/app-register.jsx',
-        app: './components/app-login.jsx'
+        app: './components/app.jsx'
     },
     output: {
         path: path.join(__dirname, 'public/bundle'),

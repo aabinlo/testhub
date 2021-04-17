@@ -31,9 +31,10 @@ let LoginForm = React.createClass({
                 dataType: 'json',
                 type: 'POST',
                 data: loginData,
+                cache: false,
                 success: function(data) {
                     if (data.success) {
-                        window.top.location.href = '//localhost:3000/';
+                        window.top.location.href = '/';
                     } else {
                         console.error('login error');
                     }
