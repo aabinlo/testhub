@@ -5,15 +5,10 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-    entry: {
-        login: './components/app-login.jsx',
-        register: './components/app-register.jsx',
-        app: './components/app.jsx',
-        appDevice: './components/app-device.jsx'
-    },
+    entry: './components/app.jsx',
     output: {
         path: path.join(__dirname, 'public/bundle'),
-        filename: '[name].bundle.js'
+        filename: 'app-bundle.js'
     },
     resolve: {
         extensions: ['', '.js', '.jsx']
