@@ -10,18 +10,13 @@ const columns = [{title: '品牌',dataIndex: 'brandName',key: 'brandName',width:
     {title: 'RAM',dataIndex:"ram",key: 'ram', width:'15%',},
     {title: '状态',dataIndex:"status",key: 'status', width:'15%',},
     {title: '操作', dataIndex:'operate',key: 'operate',width:'20%',
-     render:function(text,record){
-         var url_debug = "/device/debug/"+record.deviceId;
-         var url_test = "/device/test/"+record.deviceId;
-         return (
-             <span>
-                 <a href={url_debug}>调试</a>
-                 <span className="ant-divider"></span>
-                 <a href={url_test}>测试</a>
-             </span>
-         )
-     }
-    }
+     render:()=>(
+         <span>
+        <a href="#">调试</a>
+        <span className="ant-divider"></span>
+        <a href="#">测试</a>
+
+         </span>)},
 ]
 var DeviceList = React.createClass({
     loadDeviceListFromServer:function() {
@@ -52,7 +47,6 @@ var DeviceList = React.createClass({
                     resolution:'1080x1920',
                     ram:15642312,
                     status:'busy',
-                    deviceId:123,
                 }],
         };
     },

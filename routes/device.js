@@ -108,7 +108,7 @@ router.get('/screen_port', function(req, res, next) {
                 next(err);
             }
         } else {
-            var err = new Error('Query screen_port failed' + err.toString());
+            var err = new Error(err.toString());
             err.status = 500;
             next(err);
         }

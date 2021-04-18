@@ -25,18 +25,22 @@ let LoginForm = React.createClass({
                 console.log('Errors in form!!!');
                 return;
             }
-            console.log('Submit!!!');
             var loginData = this.props.form.getFieldsValue()
-            console.log(loginData);
             $.ajax({
-                url: '',
+                url: '/users/login',
                 dataType: 'json',
                 type: 'POST',
-                data:loginData,
-                success:function(){
-                    console.log(loginData);},
+                data: loginData,
+                cache: false,
+                success: function(data) {
+                    if (data.success) {
+                        window.top.location.href = '/';
+                    } else {
+                        console.error('login error');
+                    }
+                }.bind(this),
                 error: function(xhr, status, err) {
-                    console.error(this.props.url, status, err.toString());
+                    console.error(xhr, status, err.toString());
                 }.bind(this)
             });
         });
