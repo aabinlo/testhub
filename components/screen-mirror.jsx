@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
-import Player from '../public/lib/Player';
+import Player from '../public/lib/decoder/Player';
 import io from 'socket.io-client';
 import {Icon, Button } from 'antd';
 
@@ -36,7 +36,7 @@ var ScreenMirror = React.createClass({
         var player = new Player({
             useWorker : true,
             webgl     : true,
-            workerFile: '//localhost:3000/lib/Decoder.js',
+            workerFile: '/lib/decoder/Decoder.js',
             size: {
                 width : 800,
                 height: 480

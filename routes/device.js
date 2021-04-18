@@ -30,12 +30,14 @@ var getResponse = function (code) {
     return resInfo;
 };
 //前端显示的device信息
-function device(brandName, modelName, os, resolution, ram, status) {
+function device(deviceId, brandName, modelName, os, resolution, ram, rom, status) {
+    this.deviceId = deviceId;
     this.brandName = brandName;
     this.modelName = modelName;
     this.os = os;
     this.resolution = resolution;
     this.ram = ram;
+    this.rom = rom;
     this.status = status;
 }
 
@@ -77,8 +79,9 @@ router.get('/list', function (req, res) {
             } else {
                 var deviceList = new Array();
                 for (var i = 0; i < results.length; ++i) {
-                    deviceList.push(new device(results[i].brand_name, results[i].model_name,
-                        results[i].os, results[i].resolution, results[i].ram, results[i].device_status));
+                    deviceList.push(new device(results[i].device_id, results[i].brand_name, results[i].model_name,
+                        results[i].os, results[i].resolution, results[i].ram, results[i].rom,
+                        results[i].device_status));
                 }
                 res.json(deviceList);
             }
@@ -106,7 +109,7 @@ router.get('/screen_port', function(req, res, next) {
                 next(err);
             }
         } else {
-            var err = new Error('Query screen_port failed' + err.toString());
+            var err = new Error(err.toString());
             err.status = 500;
             next(err);
         }

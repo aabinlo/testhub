@@ -13,7 +13,7 @@ function deviceToArray(info){
     strArray.push(info['screen_size']);
     strArray.push(info['resolution']);
     strArray.push(info['device_status']);
-    strArray.push(parseFloat(info['ram'] / 1024 / 1024).toFixed(1) + 'G');
+    strArray.push(info['ram']);
     strArray.push(info['rom']);
     strArray.push(info['temperature']);
     strArray.push(info['brand_name']);
