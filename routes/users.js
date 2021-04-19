@@ -10,6 +10,7 @@ router.get('/', function(req, res, next) {
 router.route('/login').get(function(req, res) {
     res.render('login');
 }).post(function(req, res, next) {
+    console.log('/users/login', req.body);
     var user = req.body.email;
     var password = req.body.passwd;
     if (user && password) {
@@ -40,7 +41,7 @@ router.route('/login').get(function(req, res) {
 router.route('/register').get(function(req, res) {
     res.render('register');
 }).post(function(req, res, next) {
-    console.log('/users/login', req.body);
+    console.log('/users/register', req.body);
     var user = req.body.email;
     var password = req.body.passwd;
     console.log(user, password);
