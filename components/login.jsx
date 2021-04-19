@@ -90,7 +90,8 @@ let LoginForm = React.createClass({
                          <Row>
                              <Col span={12}  style={{ textAlign: 'left' }}>
                                  <Button type="primary" htmlType="submit">登录</Button>
-                                 <Button className="btn_reg">注册</Button>
+                                 <a href="/users/register"> <Button className="btn_reg">注册</Button>
+                                 </a>
                              </Col>
                          </Row>
                     </Form>
