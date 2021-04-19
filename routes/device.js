@@ -98,7 +98,7 @@ router.get('/screen_port', function(req, res, next) {
         err.status = 400;
         next(err);
     }
-    var sql = 'SELECT ctrl_port, data_port FROM device_info where device_id=?';
+    var sql = 'SELECT conn_ip, ctrl_port, data_port FROM device_info where device_id=?';
     db.execQuery(sql, deviceId, function(err, results) {
         if (!err) {
             if (results.length > 0) {
