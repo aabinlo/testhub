@@ -25,22 +25,18 @@ let LoginForm = React.createClass({
                 console.log('Errors in form!!!');
                 return;
             }
+            console.log('Submit!!!');
             var loginData = this.props.form.getFieldsValue()
+            console.log(loginData);
             $.ajax({
-                url: '/users/login',
+                url: '',
                 dataType: 'json',
                 type: 'POST',
-                data: loginData,
-                cache: false,
-                success: function(data) {
-                    if (data.success) {
-                        window.top.location.href = '/';
-                    } else {
-                        console.error('login error');
-                    }
-                }.bind(this),
+                data:loginData,
+                success:function(){
+                    console.log(loginData);},
                 error: function(xhr, status, err) {
-                    console.error(xhr, status, err.toString());
+                    console.error(this.props.url, status, err.toString());
                 }.bind(this)
             });
         });
@@ -90,8 +86,7 @@ let LoginForm = React.createClass({
                          <Row>
                              <Col span={12}  style={{ textAlign: 'left' }}>
                                  <Button type="primary" htmlType="submit">登录</Button>
-                                 <a href="/users/register"> <Button className="btn_reg">注册</Button>
-                                 </a>
+                                 <Button className="btn_reg">注册</Button>
                              </Col>
                          </Row>
                     </Form>

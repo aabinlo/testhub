@@ -4,11 +4,7 @@ var db = require('../db/db');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    if (!req.cookies.user) {
-        res.redirect('/users/login');
-    } else {
-        res.render('index', {user: req.cookies.user});
-    }
+    res.render('index');
 });
 
 module.exports = router;

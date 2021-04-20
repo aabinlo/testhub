@@ -1,10 +1,9 @@
 /* CSS declarations go here */
 body{
     font-family: Helvetica, 'Hiragino Sans GB', 'Microsoft Yahei', '微软雅黑', Arial, sans-serif;
-
-
     color:#494949;
     font-size:16px;
+    height: 100%;
 }
 
 body,ul,li,form {
@@ -171,7 +170,7 @@ body,ul,li,form {
 }
 
 .screen_container {
-    border: 3px solid #566D73;
+    border:none;
     width: 806px;
     height: 486px;
     margin-top: 10px;
@@ -184,15 +183,24 @@ body,ul,li,form {
 }
 
 .debug_container{
-
-    margin: 0 auto;
-    margin-top:100px;
-    padding-left: 50px;
-    padding-right: 50px;
+    margin-left: 50px;
     display: block;
-    min-width: 1000px;
-    width: 80%
+    float:left;
+    width:46%;
+    min-width:820px;
+
 }
+.tree_container{
+    margin-top: 20px;
+    display: block;
+    float:left;
+    width:45%;
+    min-width:810px;
+    height:600px;
+
+}
+
+
 
 .debug_title{
 
@@ -222,8 +230,26 @@ body,ul,li,form {
 
 .btn_bar{
     margin-top: 10px;
-    height:80px;
+    height:60px;
+
     width:550px;
+}
+
+.btn_bar_run{
+    margin-top: 10px;
+    margin-bottom: 20px;
+    width: 780px;
+    height:40px;
+    margin: 0 auto;
+    background-color: #14171e;
+
+}
+
+.btn_barB{
+    margin-bottom: 20px;
+    width: 310px;
+    height:60px;
+    float:right;
 }
 
 .btn_rotate{
@@ -246,7 +272,7 @@ body,ul,li,form {
 
 .btn_phone{
     background-color: #2db7f5;
-    border: none;
+    border: 1px solid  ;
     color: white;
     margin-top: 10px;
     padding: 10px 40px;
@@ -266,6 +292,99 @@ button.btn_rotate:hover{
 
 button.btn_exit:hover{
     background-color:#f37f88;
+}
+
+.btn_code_editor{
+    background-color: #2db7f5;
+    border:1px solid #14171e;
+    margin-top: 5px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    z-index: -100;
+
+    height: 30px;
+    width: 100px;
+    line-height: 30px;
+    text-align: center;
+    color: #fff;
+
+}
+button.btn_code_editor:hover{
+    background-color:#57c5f7;
+}
+
+
+.editor {
+    width:44%;
+    min-width: 700px;
+    margin-right: 20px;
+    height: 750px;
+    margin-right: 20px;
+    float:left;
+}
+
+.code_editor{
+    margin-top: 10px;
+    float:left;
+    height: 850px;
+    width:780px;
+}
+
+.log_content{
+    margin-top: 10px;
+    float:left;
+    height: 850px;
+    width:780px;
+}
+
+
+
+.debug_page{
+    width: auto;
+    height:1500px;
+    margin:0 auto;
+    margin-top: 60px;
+    margin-bottom: 50px;
+
+}
+
+.log_textarea {
+    width: 700px;
+    background-color: #fff;
+    border:1px solid #666;
+    height: 700px;
+    padding: 5px;
+    line-height: 23px;
+    overflow: auto;
+    color: #666;
+    font-size: 12px;
+    font-family: "微软雅黑";
+}
+
+
+
+
+
+#components-tabs-demo-card-top .code-box-demo {
+    background: #ECECEC;
+    overflow: hidden;
+    padding: 24px;
+}
+
+.card-container > .ant-tabs-card > .ant-tabs-content {
+    padding-top: 10px;
+    background: #fff;
+    height: 800px;
+    margin-top: -16px;
+}
+
+.card-container > .ant-tabs-card > .ant-tabs-bar .ant-tabs-tab {
+    border-color: transparent;
+}
+
+.card-container > .ant-tabs-card > .ant-tabs-bar .ant-tabs-tab-active {
+    border-color: #fff;
 }
 
 

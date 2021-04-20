@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
-import Player from '../public/lib/decoder/Player';
+import Player from '../public/lib/Player';
 import io from 'socket.io-client';
 import {Icon, Button } from 'antd';
 
@@ -24,7 +24,7 @@ var ScreenMirror = React.createClass({
             type: 'GET',
             cache: false,
             success: function(data) {
-                this.initPlayer(data[0].conn_ip, data[0].ctrl_port, data[0].data_port);
+                this.initPlayer(data[0].ctrl_port, data[0].data_port);
             }.bind(this),
             error: function(xhr, status, err) {
                 console.error(this.props.url, status, err.toString());
@@ -32,11 +32,11 @@ var ScreenMirror = React.createClass({
         });
     },
 
-    initPlayer: function(connIp, ctrlPort, dataPort) {
+    initPlayer: function(ctrlPort, dataPort) {
         var player = new Player({
             useWorker : true,
             webgl     : true,
-            workerFile: '/lib/decoder/Decoder.js',
+            workerFile: '//localhost:3000/lib/Decoder.js',
             size: {
                 width : 800,
                 height: 480
@@ -51,7 +51,7 @@ var ScreenMirror = React.createClass({
         var div = document.querySelector('#screen');
         div.appendChild(player.canvas);
 
-        var server = location.protocol + "//" + connIp + ':7550';
+        var server = location.protocol + "//" + location.hostname + ':7550';
         var socket = io.connect(server);
         socket.on('error', function (data) {
             console.log('socket error', data);
@@ -82,15 +82,15 @@ var ScreenMirror = React.createClass({
         });
 
         document.ondragstart=function() {return false;}
-        var CLICK_UP   = 0x0200;
-        var CLICK_MOVE = 0x0201;
-        var CLICK_DOWN = 0x0202;
+        var TOUCH_UP   = 0x0200;
+        var TOUCH_MOVE = 0x0201;
+        var TOUCH_DOWN = 0x0202;
         var KEY_HOME   = 0x0203;
         var KEY_RETURN = 0x0204;
         var KEY_MENU   = 0x0205;
 
-        var clickStatus = CLICK_UP;
         var offset=$('#screen').offset();
+        //var state=2;
         function computePos(event,state){
             return {
                 x: event.clientX-offset.left,
@@ -99,35 +99,25 @@ var ScreenMirror = React.createClass({
                 action: state
             };
         };
-        $('#screen').mousedown(function(e) {
-            if (clickStatus === CLICK_UP) {
-                clickStatus = CLICK_DOWN;
-                var backCtrl = computePos(e, clickStatus);
-                socket.emit('backCtrl', backCtrl);
-            }
+        $('#screen').mousedown(function(e){
+            var state=TOUCH_DOWN;
+            var backCtrl=computePos(e,state);
+            socket.emit('backCtrl',backCtrl);
         });
-        $('#screen').mousemove(function(e) {
-            if (clickStatus === CLICK_DOWN || clickStatus === CLICK_MOVE) {
-                clickStatus = CLICK_MOVE;
-                var backCtrl = computePos(e, CLICK_MOVE);
-                socket.emit('backCtrl', backCtrl);
-            }
+        $('#screen').mousemove(function(e){
+            if (state===2 ) return;
+            var state=TOUCH_MOVE;
+            var backCtrl=computePos(e,state);
+            socket.emit('backCtrl',backCtrl);
         });
-        $('#screen').mouseup(function(e) {
-            if (clickStatus === CLICK_DOWN || clickStatus === CLICK_MOVE) {
+        $('#screen').mouseup(function(e){
+            var state=TOUCH_UP;
+            var backCtrl=computePos(e,state);
+            socket.emit('backCtrl',backCtrl);
+        });
+        $('#screen').mouseout(function(e){
+            //移出处理没有写
 
-                clickStatus = CLICK_UP;
-                var backCtrl = computePos(e, clickStatus);
-                socket.emit('backCtrl', backCtrl);
-
-            }
-        });
-        $('#screen').mouseleave(function(e) {
-            if (clickStatus === CLICK_DOWN || clickStatus === CLICK_MOVE) {
-                clickStatus = CLICK_UP;
-                var backCtrl = computePos(e, clickStatus);
-                socket.emit('backCtrl', backCtrl);
-            }
         });
     },
 

@@ -30,8 +30,7 @@ var getResponse = function (code) {
     return resInfo;
 };
 //前端显示的device信息
-function device(deviceId, brandName, modelName, os, resolution, ram, rom, status) {
-    this.deviceId = deviceId;
+function device(brandName, modelName, os, resolution, ram, rom, status) {
     this.brandName = brandName;
     this.modelName = modelName;
     this.os = os;
@@ -79,7 +78,7 @@ router.get('/list', function (req, res) {
             } else {
                 var deviceList = new Array();
                 for (var i = 0; i < results.length; ++i) {
-                    deviceList.push(new device(results[i].device_id, results[i].brand_name, results[i].model_name,
+                    deviceList.push(new device(results[i].brand_name, results[i].model_name,
                         results[i].os, results[i].resolution, results[i].ram, results[i].rom,
                         results[i].device_status));
                 }
@@ -98,7 +97,7 @@ router.get('/screen_port', function(req, res, next) {
         err.status = 400;
         next(err);
     }
-    var sql = 'SELECT conn_ip, ctrl_port, data_port FROM device_info where device_id=?';
+    var sql = 'SELECT ctrl_port, data_port FROM device_info where device_id=?';
     db.execQuery(sql, deviceId, function(err, results) {
         if (!err) {
             if (results.length > 0) {
@@ -109,7 +108,7 @@ router.get('/screen_port', function(req, res, next) {
                 next(err);
             }
         } else {
-            var err = new Error(err.toString());
+            var err = new Error('Query screen_port failed' + err.toString());
             err.status = 500;
             next(err);
         }

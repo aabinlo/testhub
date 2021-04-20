@@ -6,10 +6,10 @@ var webpack = require('webpack');
 
 module.exports = {
     entry: {
-        login: './components/app-login.jsx',
-        register: './components/app-register.jsx',
-        app: './components/app.jsx',
-        appDevice: './components/app-device.jsx'
+        app:'./components/app.jsx',
+        login:'./components/app-login.jsx',
+        register:'./components/app-register.jsx',
+        debug:'./components/app-device.jsx',
     },
     output: {
         path: path.join(__dirname, 'public/bundle'),

@@ -1,6 +1,6 @@
 {
   "name": "webserver",
-  "version": "0.1.1",
+  "version": "0.0.0",
   "private": true,
   "scripts": {
     "start": "node ./bin/www"
@@ -23,7 +23,6 @@
     "ejs": "^2.5.1",
     "express": "~4.13.4",
     "express-react-views": "^0.10.2",
-    "express-session": "^1.14.0",
     "jquery": "^3.1.0",
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
@@ -31,6 +30,7 @@
     "mysql": "^2.11.1",
     "open-browser-webpack-plugin": "0.0.2",
     "react": "^15.3.0",
+    "react-codemirror": "^0.2.6",
     "react-dom": "^15.3.0",
     "react-router": "^2.6.1",
     "serve-favicon": "~2.3.0",

@@ -42,7 +42,7 @@ var ConnectDevice = React.createClass({
                 <h2>手机型号:&nbsp;<span>{this.state.model}</span></h2>
                 <h4>开发者手机连接:<span>adb connect 127.0.0.1:{this.state.connPort}</span></h4>
                 </div>
-                <button  className="btn_exit" >结束调试</button>
+                <button className="btn_exit" >结束调试</button>
             </div>
 
         );

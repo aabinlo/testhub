@@ -11,8 +11,8 @@ const columns = [{title: '品牌',dataIndex: 'brandName',key: 'brandName',width:
     {title: '状态',dataIndex:"status",key: 'status', width:'15%',},
     {title: '操作', dataIndex:'operate',key: 'operate',width:'20%',
      render:function(text,record){
-         var url_debug = "/device/debug/"+record.deviceId;
-         var url_test = "/device/test/"+record.deviceId;
+         var url_debug = "/device/debug/"+record.device_id;
+         var url_test = "/device/test/"+record.device_id;
          return (
              <span>
                  <a href={url_debug}>调试</a>
@@ -52,7 +52,7 @@ var DeviceList = React.createClass({
                     resolution:'1080x1920',
                     ram:15642312,
                     status:'busy',
-                    deviceId:123,
+                    device_id:123,
                 }],
         };
     },

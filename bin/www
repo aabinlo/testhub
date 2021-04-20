@@ -7,9 +7,6 @@
 var app = require('../server');
 var debug = require('debug')('webserver:server');
 var http = require('http');
-var package = require('../package.json');
-
-console.log('WebServer(%s) %s', app.get('env'), package.version);
 
 /**
  * Get port from environment and store in Express.
@@ -90,6 +87,4 @@ function onListening() {
       ? 'pipe ' + addr
       : 'port ' + addr.port;
   debug('Listening on ' + bind);
-
-  console.log('http://localhost:' + addr.port);
 }

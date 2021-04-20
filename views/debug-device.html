@@ -4,10 +4,18 @@
     <meta charset="UTF-8">
     <title>TestHub</title>
     <link href="/stylesheets/style.css" rel="stylesheet">
+    <link href="/lib/CodeMirror/codemirror.css" rel="stylesheet" >
+    <link href="/lib/CodeMirror/lesser-dark.css" rel="stylesheet">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+
 </head>
+
 <body>
-<div id="app" deviceId=<%= deviceId %>>
-    <script src="/bundle/appDevice.bundle.js"></script>
+<div id="app" deviceId=<%= deviceId %> >
 </div>
+<script src="/bundle/debug.bundle.js"></script>
+<script src="/lib/CodeMirror/codemirror.js"></script>
+<script src="/lib/CodeMirror/mode/javascript.js"></script>
+
 </body>
 </html>
